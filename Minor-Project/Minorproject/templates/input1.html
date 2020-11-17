@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="en">
+<head>
+	<title>NEURAL STYLE TRANSFER</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
+
+	<!-- Stylesheets -->
+   <link rel="icon" href="{% static 'images/trees.png' %}">
+	<link href="{% static 'plugin-frameworks/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'plugin-frameworks/swiper.css' %}" rel="stylesheet">
+ <!-- <link rel="stylesheet" href="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' %}" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
+ <link rel="stylesheet" href="{% static 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="{% static 'fonts/ionicons.css' %}" rel="stylesheet">
+  <link href="{% static 'common/style1.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-trans fixed-top" >
+		<div class="container" >
+	  <a class="navbar-brand" href="#">NST</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">About Us</a>
+	      </li>
+
+	    </ul>
+			<ul class="nav navbar-nav navbar-right">
+			 <li class="nav-item active">
+				 <a class="nav-link" href="#">Sign Up <i class="fa fa-user-plus"></i></a>
+			 </li>
+			 <li class="nav-item active">
+				 <a class="nav-link" href="#">Login<i class="fa fa-user"></i></a>
+			 </li>
+
+		 </ul>
+
+	  </div>
+	</nav>
+
+  <div class="container" >
+    <div class="jumbotron" id="simage">
+       <p> Upload Style Image </p>
+        <!-- <a class="btn btn-lg" href="#" id="transfer" role="button"><span>Let's style it<span></a> -->
+        <!-- <a class="btn btn-lg" href ="input1.html" id="transfer" role="button" ><span>Content Image </span></a> -->
+     </div>
+   </div>
+	 <form class=""  action="upload" method="post" enctype="multipart/form-data">
+	 	{% csrf_token %}
+
+
+<input type="file" id="real-file" name="image"  onchange="return fileValidation()" hidden="hidden" />
+  <button type="button" id="custom-button" >CHOOSE A FILE</button>
+  <span id="custom-text">No file chosen, yet.</span>
+	<input id="subim" type="submit" value="upload image">
+<div class="image-preview" id="imagePreview">
+  <img src=" " alt="Image Preview" class="image-preview__image">
+  <span class="image-preview__default_text">Image Preview</span>
+</div>
+</form>
+
+
+<script>
+        function fileValidation() {
+            var fileInput =
+                document.getElementById('real-file');
+
+            var filePath = fileInput.value;
+
+            // Allowing file type
+            var allowedExtensions =
+                    /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type');
+                fileInput.value = '';
+                return false;
+            }
+          
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+const realFileBtn = document.getElementById("real-file");
+const customBtn = document.getElementById("custom-button");
+const customTxt = document.getElementById("custom-text");
+
+customBtn.addEventListener("click", function() {
+  realFileBtn.click();
+});
+
+realFileBtn.addEventListener("change", function() {
+  if (realFileBtn.value) {
+    customTxt.innerHTML = realFileBtn.value.match(
+      /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    )[1];
+  } else {
+    customTxt.innerHTML = "No file chosen, yet.";
+  }
+});
+
+const previewContainer=document.getElementById("imagePreview");
+const previewImage= previewContainer.querySelector(".image-preview__image");
+const previewDefaultText= previewContainer.querySelector(".image-preview__default_text");
+
+realFileBtn.addEventListener("change", function() {
+  const file= this.files[0];
+  if(file){
+    const reader = new FileReader();
+
+    previewDefaultText.style.display = "none";
+    previewImage.style.display = "block";
+
+    reader.addEventListener("load" , function(){
+      console.log(this);
+      previewImage.setAttribute("src" , this.result);
+
+    });
+    reader.readAsDataURL(file);
+  }else{
+    previewDefaultText.style.display = "null";
+    previewImage.style.display = "null";
+    previewImage.setAttribute("src" , " ");
+  }
+});
+ </script>
+<style>
+#subim{
+	padding: 10px;
+  color: white;
+  background-color: #C0290F;
+  border: 1px solid #C0290F;
+  border-radius: 5px;
+  cursor: pointer;
+
+  margin-left: 100px;
+  position: absolute;
+  left: 430px;
+  top: 200px;
+}
+</style>
+
+
+
+<button class="button" onclick= "window.location.href='output.html';"><span>Show output </span></button>
+<style>
+.button {
+  border-radius: 4px;
+  background-color: #C0290F;
+  border: 1px solid #C0290F;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+	margin-left: 520px;
+}
+
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
+
+
+  <script src="{% static 'plugin-frameworks/jquery-3.2.1.min.js' %}"></script>
+
+  	<script src="{% static 'plugin-frameworks/bootstrap.min.js' %}"></script>
+
+  	<script src="{% static 'plugin-frameworks/swiper.js' %}"></script>
+
+
+  	<script src="{% static 'common/scripts.js' %}"></script>
+
+  </body>
+  </html>
