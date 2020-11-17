@@ -1,0 +1,142 @@
+body
+{
+  background-image: url('social-media.jpg');
+  /* background-size: cover;
+  background-repeat: no-repeat;
+  font-family: Roboto, sans-serif;
+  color: #0f3c4b;
+  background-color: #808000; */
+
+}
+.jumbotron{
+  color: #C0290F;
+  text-align: center;
+ margin-top: 100px;
+ font-family: "Times New Roman", Times, serif;
+ font-weight: bold;
+ font-style: oblique;
+ font-size: 50px;
+ font-variant: small-caps;
+ background-color:transparent;
+ }
+ .navbar-trans {
+   background: rgba(0,0,0,.2); }
+.navbar-brand{
+  color: #F4DE5F;
+  font-weight: bold;
+}
+
+.nav-link{
+  color: #ECD343;
+}
+ #transfer {
+  border-radius: 10px;
+  background-color: #C0290F;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#transfer span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#transfer span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+#transfer:hover {opacity: 0.7}
+#transfer:hover span {
+  padding-right: 25px;
+}
+
+#transfer:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+#simage{
+  color: #C0290F;
+  text-align: left;
+ margin-top: 50px;
+ font-family: "Times New Roman", Times, serif;
+ font-weight: bold;
+ font-style: oblique;
+ font-size: 50px;
+ font-variant: small-caps;
+ background-color:transparent;
+}
+#custom-button {
+  padding: 10px;
+  color: white;
+  background-color: #C0290F;
+  border: 1px solid #C0290F;
+  border-radius: 5px;
+  cursor: pointer;
+
+  margin-left: 100px;
+  position: absolute;
+  left: 80px;
+  top: 200px;
+}
+
+#custom-button:hover {
+opacity: 0.7;
+}
+
+#custom-text {
+  margin-left: 10px;
+  font-family: sans-serif;
+  color: #aaa;
+  position: absolute;
+  left: 320px;
+  top: 215px;
+}
+
+.image-preview{
+  width: 300px;
+  min-height: 200px;
+  border: 2px solid #C0290F;
+  border-radius: 5px;
+  margin-top: 1px;
+  margin-left: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #cccccc;
+  position: absolute;
+  left: 35px;
+  top: 260px;
+
+}
+.image-preview__image{
+  display: none;
+  width: 100%;
+}
+/* #subimage{
+  padding: 10px;
+  color: white;
+  background-color: #5F6DF4;
+  border: 1px solid #5F6DF4;
+  border-radius: 5px;
+  cursor: pointer;
+
+  margin-left: 100px;
+  position: absolute;
+  left: 80px;
+  top: 200px;
+
+} */
